@@ -1,0 +1,45 @@
+body{
+    width: 100%;
+    margin: 0 auto;
+}
+
+#header{
+    text-align: center;
+    font-weight: bold;
+    font-size: xx-large;
+    /* font-family: "Comic Sans MS"; */
+    font-family: "Turret Road";
+    background-color: azure;
+    width: 100%;
+    line-height: 60px
+}
+
+#mainBody{
+    width: 80%;
+    margin: 0 auto;
+}
+
+#note{
+    text-align: center;
+    font-weight: bold;
+    font-family: "Turret Road";
+}
+
+.display{
+    box-sizing: content-box;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+#controlForm{
+    text-align: center;
+    /* border-style: double; */
+}
+
+button {
+  line-height: 60px;
+  font-weight: bold;
+  padding: 0px 40px;
+  font-size: 25px;
+}
