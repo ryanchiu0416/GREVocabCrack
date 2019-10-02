@@ -1,9 +1,19 @@
+# runtime: python27
+# threadsafe: true
+
+# handlers:
+# - url: /static
+#   static_dir: static
+
+# - url: /.*
+#   script: main.py
+
 runtime: python27
+api_version: 1
 threadsafe: true
 
 handlers:
 - url: /static
   static_dir: static
-
 - url: /.*
-  script: main.py
+  script: main.app
