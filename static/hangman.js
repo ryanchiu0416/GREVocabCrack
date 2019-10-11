@@ -3,11 +3,11 @@ var cxt = canvas2.getContext("2d");
 
 cxt.font = "20px Turret Road";
 cxt.textAlign = "center";
-cxt.fillText(defi, 0.8 * window.innerWidth / 2, 20);
+cxt.fillText(defi, canvas2.width / 2, 20);
 
 // draw default setup
 var midPoint = window.innerWidth * 0.8 / 2;
-cxt.moveTo(425, 350); //275
+cxt.moveTo(425, 350);
 cxt.lineTo(525, 350);
 cxt.lineTo(525, 375);
 cxt.lineTo(425, 375);

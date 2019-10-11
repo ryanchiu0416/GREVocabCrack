@@ -1,6 +1,5 @@
-var canvas = document.getElementById("guessCanvas");
+var canvas = document.getElementById("mainCanvas");
 var c = canvas.getContext("2d");
-
 
 
 // Calculate pixel length of the answer
@@ -12,7 +11,7 @@ for (i = 1; i < answer.length; i++) {
     pixLength += (20 + 28); //one word (20 px) and one space (28 px)
     countToCorrect++;
 }
-var startP = 0.8 * window.innerWidth / 2  - pixLength / 2;
+var startP = canvas.width / 2 - pixLength / 2;
 
 // Display underlines properly 
 var pointer = startP;

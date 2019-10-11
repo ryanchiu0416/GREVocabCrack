@@ -1,13 +1,12 @@
 body{
     width: 100%;
-    margin: 0 auto;
+    margin: auto auto;
 }
 
 #header{
     text-align: center;
     font-weight: bold;
     font-size: xx-large;
-    /* font-family: "Comic Sans MS"; */
     font-family: "Turret Road";
     background-color: azure;
     width: 100%;
@@ -42,4 +41,12 @@ button {
   font-weight: bold;
   padding: 0px 40px;
   font-size: 25px;
+}
+
+#mainCanvas {
+    width: 100%;
+}
+
+#hangmanCanvas {
+    width: 100%;
 }
