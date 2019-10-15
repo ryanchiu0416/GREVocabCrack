@@ -25,22 +25,32 @@ for (i = 0; i < answer.length; i++) {
     pointer += 48; //total px (word + small space)
 }
 
-
+// Handles inputs via key pressing. Passes to executeInput()
 function keypressButton(key) {
     event.preventDefault(); //prevent browser from refreshing page when button is clicked
-    document.getElementById(key).disabled = true;
-
-
-    // have to figure out how to lock down keys, not just the buttons shown on the screen!
-    executeInput(key);
+    document.getElementById(key).disabled = true;    
+    keypressClickHelper(key);
 }
 
+// Handles inputs via button clicking. Passes to executeInput()
 function clickButton() {
     event.preventDefault(); //prevent browser from refreshing page when button is clicked
     document.getElementById(this.id).disabled = true;
-    executeInput(this.id);
+    keypressClickHelper(this.id);
 }
 
+// Helper method for keypressButton(key) and clickButton()
+function keypressClickHelper(tmp) {
+    var diff = tmp.charCodeAt(0) - "A".charCodeAt(0);
+    if (isKeyPressed[diff] == false) {
+        isKeyPressed[diff] = true;
+        executeInput(tmp);
+    }
+}
+
+// Handles inputs from keypressButton(key) or clickButton(). Processes letters and show correct guesses.
+// Keeps counts of chances. Handles both cases if user guesses the word correctly or not.
+// Passes to updateChance().
 function executeInput(letterInput) {
     var scanPoint = startP;
     c.font = "40px Courier new";
@@ -61,13 +71,12 @@ function executeInput(letterInput) {
         chanceLeft--;
     } else if (countToCorrect == 0) {
         changeScore(true);
-        
         alert("Congrats! Answer is "+ answer);
     }
     updateChance();
 }
 
-
+// method that keeps track of score counting
 function changeScore(isAdd) {
     curScore = +curScore;
     if (isAdd) {
@@ -78,7 +87,7 @@ function changeScore(isAdd) {
     localStorage.setItem('scoreID', curScore);
 }
 
-
+//  Update chances, changes visuals, and deals with drawing hangman based on chances count.
 function updateChance() {
     cxt.clearRect(150, 150, 150, 50);
     if (chanceLeft > 0) {
@@ -87,7 +96,6 @@ function updateChance() {
         changeScore(false);
         alert("You lost! The answer is " + answer);
     }
-
 
     cxt.beginPath();
     if (chanceLeft == 7) {
@@ -122,9 +130,7 @@ function updateChance() {
 
     if (chanceLeft == 0 || countToCorrect == 0) {
         cxt.clearRect(205, 225, 50, 50);
-        cxt.fillText('Total Score: ' + curScore, 150, 250);
-
-        cxt.clearRect(615, 124, 70, 220);
+        cxt.clearRect(615, 124, 70, 220); // clear hangman
         location.reload(true);
     }
 }

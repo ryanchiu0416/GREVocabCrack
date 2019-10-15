@@ -18,44 +18,18 @@
             <div class="display">
                 <canvas id="mainCanvas" width="1150px" height="100px"></canvas>
                 <script type="text/javascript" src="{{ url_for('static', filename='mainCanvas.js') }}">
-                    
                 </script>
             </div>
             <div>
                 <canvas id="hangmanCanvas" width="1150px" height="390px"></canvas> 
-                <script type="text/javascript" src="{{ url_for('static', filename='hangman.js') }}"></script>
+                <script type="text/javascript" src="{{ url_for('static', filename='hangman.js') }}">
+                </script>
             </div>
-
-            
             <form id="controlForm">
-                <script type="text/javascript">
-                    var letters = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D",
-                        "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M"];
-                    
-                    var controlForm = document.getElementById("controlForm");
-                    
-                    for (i = 0; i < 26; i++) {
-                        var btn = document.createElement("BUTTON");
-                        btn.id = letters[i]; //give id
-                        btn.addEventListener("click", clickButton); //link to 'clickButton' function
-                        btn.innerHTML = letters[i];
-                        btn.style.fontFamily = "Turret Road";
-
-                        if (i == 10 || i == 19) {
-                            document.write("<br />");
-                        }
-                        controlForm.appendChild(btn);
-                    }
-
-                    document.addEventListener("keypress", function(e) {
-                        var code = e.which || e.keyCode;
-                        var key  = String.fromCharCode(code).toUpperCase();
-                        keypressButton(key);
-                    });
+                <script type="text/javascript" src="{{ url_for('static', filename='controlForm.js') }}">
                 </script>
             </form>
             <div id="note">You can use your keyboard key as well!</div>
-            
         </div>
     </body>
 </html>
