@@ -42,7 +42,7 @@ function clickButton() {
 // Helper method for keypressButton(key) and clickButton()
 function keypressClickHelper(tmp) {
     var diff = tmp.charCodeAt(0) - "A".charCodeAt(0);
-    if (isKeyPressed[diff] == false) {
+    if (isKeyPressed[diff] === false) {
         isKeyPressed[diff] = true;
         executeInput(tmp);
     }
@@ -59,7 +59,7 @@ function executeInput(letterInput) {
     for (i = 0; i < answer.length; i++) {
         var letter = answer.charAt(i);
         
-        if (letter == letterInput) {
+        if (letter === letterInput) {
             c.fillText(letter, scanPoint, 40);
             countToCorrect--;
             isCorrectNum++;
@@ -67,13 +67,23 @@ function executeInput(letterInput) {
         scanPoint += 48;
     }
 
-    if (isCorrectNum == 0) {
+    if (isCorrectNum === 0) {
         chanceLeft--;
-    } else if (countToCorrect == 0) {
+    } else if (countToCorrect === 0) {
+        // WIN CONDITION
         changeScore(true);
-        alert("Congrats! Answer is "+ answer);
+        document.getElementById("answerLine").innerHTML = "You got it! The answer was "+ answer;
+        modal.style.display = "block";
     }
     updateChance();
+}
+
+function getScore() {
+    var curScore = localStorage.getItem('scoreID');
+    if (!curScore) {
+        curScore = 0;
+    }
+    return curScore;
 }
 
 // method that keeps track of score counting
@@ -82,7 +92,7 @@ function changeScore(isAdd) {
     if (isAdd) {
         curScore += 10;
     } else if (!isAdd) {
-        curScore-=10;
+        curScore -= 10;
     }
     localStorage.setItem('scoreID', curScore);
 }
@@ -92,45 +102,68 @@ function updateChance() {
     cxt.clearRect(150, 150, 150, 50);
     if (chanceLeft > 0) {
         cxt.fillText(chanceLeft + " chance", 225, 175);
-    } else if (chanceLeft == 0) {
+    } else if (chanceLeft === 0) {
+        // LOSE CONDITION
         changeScore(false);
-        alert("You lost! The answer is " + answer);
+        document.getElementById("answerLine").innerHTML = "You lost! The word was " + answer;
+        modal.style.display = "block";
     }
 
     cxt.beginPath();
-    if (chanceLeft == 7) {
+    if (chanceLeft === 7) {
         cxt.arc(650, 155, 30, 0, 2 * Math.PI);
-    } else if (chanceLeft == 6) {
+    } else if (chanceLeft === 6) {
         cxt.moveTo(650, 185); //+75
         cxt.lineTo(650, 275);
-    } else if (chanceLeft == 5) {
+    } else if (chanceLeft === 5) {
         cxt.moveTo(650, 205);
         cxt.lineTo(620, 235);
         cxt.lineTo(620, 265);
-    } else if (chanceLeft == 4) {
+    } else if (chanceLeft === 4) {
         cxt.moveTo(650, 205);
         cxt.lineTo(680, 235);
         cxt.lineTo(680, 265);
-    } else if (chanceLeft == 3) {
+    } else if (chanceLeft === 3) {
         cxt.moveTo(650, 275);
         cxt.lineTo(630, 335);
         cxt.lineTo(615, 333);
-    } else if (chanceLeft == 2) {
+    } else if (chanceLeft === 2) {
         cxt.moveTo(650, 275);
         cxt.lineTo(670, 335);
         cxt.lineTo(685, 333);
-    } else if (chanceLeft == 1) {
+    } else if (chanceLeft === 1) {
         cxt.arc(640, 148, 2, 0, 2 * Math.PI);
         cxt.moveTo(660, 148);
         cxt.arc(660, 148, 2, 0, 2 * Math.PI);
-    } else if (chanceLeft == 0) {
+    } else if (chanceLeft === 0) {
         cxt.arc(650, 180, 10, 5 / 4 * Math.PI, 7 / 4 * Math.PI);
     }
     cxt.stroke();
 
-    if (chanceLeft == 0 || countToCorrect == 0) {
+    if (chanceLeft === 0 || countToCorrect === 0) {
         cxt.clearRect(205, 225, 50, 50);
         cxt.clearRect(615, 124, 70, 220); // clear hangman
+    }
+}
+
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+    location.reload(true);
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
         location.reload(true);
     }
 }

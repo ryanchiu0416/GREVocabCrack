@@ -26,21 +26,20 @@ cxt.lineTo(530, 85);
 cxt.lineTo(470, 145);
 cxt.lineTo(460, 135);
 cxt.stroke();
-cxt.fillStyle = "#FFFFFF";
-cxt.fillRect(150, 150, 150, 50);
-cxt.fillRect(615, 124, 70, 220);
-cxt.fillRect(205, 225, 50, 50);
+
 cxt.fillStyle = "#000000";
-
 var chanceLeft = 8;
-
-var curScore = localStorage.getItem('scoreID');
-if (!curScore) {
-    curScore = 0;
-}
+var curScore = getScore();
 
 cxt.font = "25px Turret Road";
 cxt.fillText("You still got:", 150, 125);
 cxt.fillText(chanceLeft + " chance", 225, 175);
-
 cxt.fillText("Total Score: " + curScore, 150, 250); // display of score
+
+var resetButton = document.getElementById("resetButton");
+resetButton.onclick = function() {
+    localStorage.clear();
+    cxt.clearRect(40, 225, 250, 50);
+    curScore = 0;
+    cxt.fillText("Total Score: " + curScore, 150, 250);
+}

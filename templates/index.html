@@ -13,15 +13,25 @@
         </script>
 
         <div id="header">Hangman: Crack the GRE Vocabularies</div>
-        
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="answerLine">Answer unknown</p>
+          </div>
+        </div>
+
         <div id="mainBody">    
             <div class="display">
                 <canvas id="mainCanvas" width="1150px" height="100px"></canvas>
                 <script type="text/javascript" src="{{ url_for('static', filename='mainCanvas.js') }}">
                 </script>
             </div>
-            <div>
-                <canvas id="hangmanCanvas" width="1150px" height="390px"></canvas> 
+            <div id="hangmanDiv">
+                <canvas id="hangmanCanvas" width="1150px" height="390px">
+                </canvas>
+                <button id="resetButton" class="button">Reset Score</button>
                 <script type="text/javascript" src="{{ url_for('static', filename='hangman.js') }}">
                 </script>
             </div>

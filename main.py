@@ -10,13 +10,10 @@ def index():
 
     randNum = randrange(805)
     lineChosen = wordList[randNum]
-    # print(wordList[randNum])
 
     line = lineChosen.split(" - ")
-    # print(line[0])
     answer = line[0]
     defi = line[1][:-1]
-    # print(defi)
     
     return render_template("index.html", answer = answer, defi = defi)
 
