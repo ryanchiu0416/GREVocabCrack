@@ -18,8 +18,15 @@ for (i = 0; i < 26; i++) {
 
 document.addEventListener("keypress", function(e) {
     var code = e.which || e.keyCode;
-    var key  = String.fromCharCode(code).toUpperCase();
-    keypressButton(key);
+    var isVisible = document.getElementById("myModal").style.display === "block";
+
+    if ( isVisible && code === 13) {
+        modal.style.display = "none";
+        location.reload(true);
+    } else {   
+        var key  = String.fromCharCode(code).toUpperCase();
+        keypressButton(key);
+    }
 });
 
 
