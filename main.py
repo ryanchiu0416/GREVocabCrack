@@ -8,7 +8,7 @@ def index():
     input = open("greWordList.txt", "r")
     wordList = input.readlines()
 
-    randNum = randrange(805)
+    randNum = randrange(len(wordList))
     lineChosen = wordList[randNum]
 
     line = lineChosen.split(" - ")

@@ -7,25 +7,18 @@ cxt.fillText(defi, canvas2.width / 2, 20);
 
 // draw default setup
 var midPoint = window.innerWidth * 0.8 / 2;
-cxt.moveTo(425, 350);
-cxt.lineTo(525, 350);
-cxt.lineTo(525, 375);
-cxt.lineTo(425, 375);
-cxt.lineTo(425, 350);
-cxt.moveTo(460, 350);
-cxt.lineTo(460, 75);
-cxt.moveTo(480, 350);
-cxt.lineTo(480, 95);
-cxt.lineTo(650, 95);
-cxt.moveTo(460, 75);
-cxt.lineTo(650, 75);
+cxt.moveTo(650, 75);
 cxt.lineTo(650, 125); // where the hook is
-cxt.moveTo(460, 135);
-cxt.lineTo(520, 75);
-cxt.lineTo(530, 85);
-cxt.lineTo(470, 145);
-cxt.lineTo(460, 135);
 cxt.stroke();
+
+cxt.fillStyle = "#765c48";
+cxt.fillRect(460, 75, 20, 275);
+cxt.fillRect(460, 75, 190, 20);
+cxt.fillStyle = "#5e4a3a";
+cxt.fillRect(425, 350, 100 ,25);
+cxt.rotate(-0.8);
+cxt.fillRect(225, 420, 80, 15);
+cxt.rotate(0.8);
 
 cxt.fillStyle = "#000000";
 var chanceLeft = 8;

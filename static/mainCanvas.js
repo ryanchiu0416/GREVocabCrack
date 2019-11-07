@@ -7,9 +7,10 @@ var pixLength = 20; //read first letter
 var countToCorrect = 1;
 for (i = 1; i < answer.length; i++) {
     var letter = answer.charAt(i);
-    
+    if (letter != " ") {
+        countToCorrect++;
+    }
     pixLength += (20 + 28); //one word (20 px) and one space (28 px)
-    countToCorrect++;
 }
 var startP = canvas.width / 2 - pixLength / 2;
 
@@ -18,17 +19,18 @@ var pointer = startP;
 c.beginPath();
 for (i = 0; i < answer.length; i++) {
     var letter = answer.charAt(i);
-
-    c.moveTo(pointer, 50);
-    c.lineTo(pointer + 20, 50);
-    c.stroke();
+    if (letter != " ") {
+        c.moveTo(pointer, 50);
+        c.lineTo(pointer + 20, 50);
+        c.stroke();
+    }
     pointer += 48; //total px (word + small space)
 }
 
 // Handles inputs via key pressing. Passes to executeInput()
 function keypressButton(key) {
     event.preventDefault(); //prevent browser from refreshing page when button is clicked
-    document.getElementById(key).disabled = true;    
+    document.getElementById(key).disabled = true;
     keypressClickHelper(key);
 }
 
@@ -36,6 +38,7 @@ function keypressButton(key) {
 function clickButton() {
     event.preventDefault(); //prevent browser from refreshing page when button is clicked
     document.getElementById(this.id).disabled = true;
+    // document.getElementById(this.id).style.background = "#d3d3d3";
     keypressClickHelper(this.id);
 }
 
@@ -44,6 +47,8 @@ function keypressClickHelper(tmp) {
     var diff = tmp.charCodeAt(0) - "A".charCodeAt(0);
     if (isKeyPressed[diff] === false) {
         isKeyPressed[diff] = true;
+        document.getElementById(tmp).style.background = "#6bcbdf";
+        document.getElementById(tmp).style.color = "#ffffff";
         executeInput(tmp);
     }
 }
@@ -73,6 +78,9 @@ function executeInput(letterInput) {
         // WIN CONDITION
         changeScore(true);
         document.getElementById("answerLine").innerHTML = "You got it! The answer was "+ answer;
+        for (i = 0; i < 26; i++) {
+            isKeyPressed[i] = true;
+        }
         modal.style.display = "block";
     }
     updateChance();
@@ -106,7 +114,11 @@ function updateChance() {
         // LOSE CONDITION
         changeScore(false);
         document.getElementById("answerLine").innerHTML = "You lost! The word was " + answer;
+        for (i = 0; i < 26; i++) {
+            isKeyPressed[i] = true;
+        }
         modal.style.display = "block";
+        
     }
 
     cxt.beginPath();

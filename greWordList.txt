@@ -17,6 +17,7 @@ probity - honesty, integrity
 pertinacity - stubbornness; doggedness
 admonish - to rebuke; to reprimand
 connoisseur - An expert
+exact a toll - force to pay a price; to deteriorate something
 edify - to enlighten
 venal - corruptible
 grumpy - bad tempered
@@ -532,7 +533,6 @@ dynamism - the quality of being characterized by vigorous activity and progress
 epitome - a typical example
 incendiary - combustible, flammable, burning easily
 veracious - honest; truthful
-exact a toll - force to pay a price; to deteriorate something
 excise - To cut out of; remove
 indict - to charge with a crime; accuse
 exacerbate - to make worse

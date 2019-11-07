@@ -9,9 +9,12 @@ for (i = 0; i < 26; i++) {
     btn.addEventListener("click", clickButton); //link to 'clickButton' function
     btn.innerHTML = letters[i];
     btn.style.fontFamily = "Turret Road";
+    // btn.style.background = "#6bcbdf";
+    btn.style.color = "#6bcbdf";
+    btn.style.border = "thin solid #6bcbdf";
 
     if (i === 10 || i === 19) {
-        document.write("<br />");
+        document.write("<br/>");
     }
     controlForm.appendChild(btn);
 }
@@ -23,7 +26,7 @@ document.addEventListener("keypress", function(e) {
     if ( isVisible && code === 13) {
         modal.style.display = "none";
         location.reload(true);
-    } else {   
+    } else {
         var key  = String.fromCharCode(code).toUpperCase();
         keypressButton(key);
     }
