@@ -113,7 +113,15 @@ function updateChance() {
     } else if (chanceLeft === 0) {
         // LOSE CONDITION
         changeScore(false);
-        document.getElementById("answerLine").innerHTML = "You lost! The word was " + answer;
+        // document.getElementById("answerLine").innerHTML = "You lost! The word was " + answer;
+        // document.getElementById("link").href = "www.google.com/search?q=" + answer + "+meaning";
+        document.getElementById("answerLine").innerHTML = "You lost! The word was ";
+        var anchor = document.createElement("A");
+        anchor.setAttribute("href", "www.google.com/search?q=" + answer + "+meaning");
+        anchor.setAttribute("target", "_blank");
+        anchor.innerHTML = answer;
+        anchor.style.color = "black";
+        document.getElementById("answerLine").appendChild(anchor);
         for (i = 0; i < 26; i++) {
             isKeyPressed[i] = true;
         }
