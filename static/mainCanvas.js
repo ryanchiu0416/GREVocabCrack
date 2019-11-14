@@ -7,7 +7,7 @@ var pixLength = 20; //read first letter
 var countToCorrect = 1;
 for (i = 1; i < answer.length; i++) {
     var letter = answer.charAt(i);
-    if (letter != " ") {
+    if (letter != " " || letter != "-") {
         countToCorrect++;
     }
     pixLength += (20 + 28); //one word (20 px) and one space (28 px)
@@ -19,7 +19,7 @@ var pointer = startP;
 c.beginPath();
 for (i = 0; i < answer.length; i++) {
     var letter = answer.charAt(i);
-    if (letter != " ") {
+    if (letter != " " || letter != "-") {
         c.moveTo(pointer, 50);
         c.lineTo(pointer + 20, 50);
         c.stroke();
@@ -77,13 +77,23 @@ function executeInput(letterInput) {
     } else if (countToCorrect === 0) {
         // WIN CONDITION
         changeScore(true);
-        document.getElementById("answerLine").innerHTML = "You got it! The answer was "+ answer;
+        document.getElementById("answerLine").innerHTML = "You got it! The answer was ";
+        addWordLink();
         for (i = 0; i < 26; i++) {
             isKeyPressed[i] = true;
         }
         modal.style.display = "block";
     }
     updateChance();
+}
+
+function addWordLink() {
+    var anchor = document.createElement("A");
+    anchor.setAttribute("href", "http://www.google.com/search?q=" + answer.toLowerCase() + "+meaning");
+    anchor.setAttribute("target", "_blank");
+    anchor.innerHTML = answer;
+    anchor.style.color = "black";
+    document.getElementById("answerLine").appendChild(anchor);
 }
 
 function getScore() {
@@ -116,12 +126,7 @@ function updateChance() {
         // document.getElementById("answerLine").innerHTML = "You lost! The word was " + answer;
         // document.getElementById("link").href = "www.google.com/search?q=" + answer + "+meaning";
         document.getElementById("answerLine").innerHTML = "You lost! The word was ";
-        var anchor = document.createElement("A");
-        anchor.setAttribute("href", "www.google.com/search?q=" + answer + "+meaning");
-        anchor.setAttribute("target", "_blank");
-        anchor.innerHTML = answer;
-        anchor.style.color = "black";
-        document.getElementById("answerLine").appendChild(anchor);
+        addWordLink();
         for (i = 0; i < 26; i++) {
             isKeyPressed[i] = true;
         }
