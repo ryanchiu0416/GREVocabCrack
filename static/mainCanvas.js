@@ -7,7 +7,7 @@ var pixLength = 20; //read first letter
 var countToCorrect = 1;
 for (i = 1; i < answer.length; i++) {
     var letter = answer.charAt(i);
-    if (letter != " " || letter != "-") {
+    if (letter != " " && letter != "-") {
         countToCorrect++;
     }
     pixLength += (20 + 28); //one word (20 px) and one space (28 px)
@@ -19,12 +19,15 @@ var pointer = startP;
 c.beginPath();
 for (i = 0; i < answer.length; i++) {
     var letter = answer.charAt(i);
-    if (letter != " " || letter != "-") {
+    if (letter !== " " && letter !== "-") {
         c.moveTo(pointer, 50);
         c.lineTo(pointer + 20, 50);
         c.stroke();
+    } else {
+        c.font = "40px Courier new";
+        c.fillText(letter, pointer, 50);
     }
-    pointer += 48; //total px (word + small space)
+    pointer += 48; //total px (word 20px + small space 28px)
 }
 
 // Handles inputs via key pressing. Passes to executeInput()
